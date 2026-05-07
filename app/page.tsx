@@ -98,7 +98,7 @@ export default function Page() {
             <br />se siente <em>como el paraíso.</em>
           </h1>
           <div style={{ width:1, height:36, background:"rgba(255,255,255,0.4)", margin:"1.8rem auto" }} />
-          <a href="#" className="btn btn-white">Descubre Entre Islas</a>
+          <a href="#" className="btn btn-white" style={{ fontWeight:500, letterSpacing:"0.25em", borderWidth:1.5, borderColor:"#fff", color:"#fff", textShadow:"0 1px 4px rgba(0,0,0,0.4)", background:"rgba(255,255,255,0.08)" }}>Descubre Entre Islas</a>
         </div>
       </section>
 
@@ -542,13 +542,10 @@ export default function Page() {
           <p className="body" style={{ marginBottom:"0.6rem" }}>El atractivo internacional de esta isla no solo es debido a sus escenarios naturales, sino también por su cultura y su historia.</p>
           <p className="body" style={{ marginBottom:"0.6rem" }}>Una isla moldeada por la historia global de los últimos 100 años.</p>
           <p className="body" style={{ marginBottom:"2.5rem" }}>Llegar a Cozumel es viajar en el tiempo.</p>
-          <a href="#" className="btn btn-teal" style={{ alignSelf:"flex-start", background:TEAL, color:CREAM, padding:"0.85rem 2.5rem", fontSize:"0.62rem", letterSpacing:"0.22em" }}>Conocer el proyecto</a>
+          <a href="#" className="btn btn-teal" style={{ alignSelf:"flex-start" }}>Conocer el proyecto</a>
         </div>
         <div className="r-img-tall" style={{ position:"relative", minHeight:420 }}>
           <Image src="/images/historia-cozumel.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          <div style={{ position:"absolute", bottom:20, right:20 }}>
-            <a href="#" className="btn btn-white">Conocer el proyecto</a>
-          </div>
         </div>
       </section>
 
