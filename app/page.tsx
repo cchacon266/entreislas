@@ -46,7 +46,7 @@ export default function Page() {
           1 · HERO — full-bleed aerial, dark overlay, white text
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ position:"relative", width:"100%", height:"100vh", minHeight:600, overflow:"hidden" }}>
-        <Image src="/images/hero-cozumel-aerial.jpg" alt="Cozumel" fill sizes="100vw" style={{ objectFit:"cover", objectPosition:"center" }} priority />
+        <Image src="/images/hero-cozumel-aerial.webp" alt="Cozumel" fill sizes="100vw" style={{ objectFit:"cover", objectPosition:"center" }} priority />
         <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom,rgba(20,14,6,0.55) 0%,rgba(20,14,6,0.18) 45%,rgba(20,14,6,0.52) 100%)" }} />
 
         {/* Nav */}
@@ -216,7 +216,7 @@ export default function Page() {
           5 · FULLSCREEN ISLAND
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ position:"relative", width:"100%", height:"90vh", minHeight:520, overflow:"hidden" }}>
-        <Image src="/images/palm-aerial.jpg" alt="" fill sizes="100vw" style={{ objectFit:"cover", objectPosition:"center" }} />
+        <Image src="/images/faro-cozumel.webp" alt="" fill sizes="100vw" style={{ objectFit:"cover", objectPosition:"center" }} />
       </section>
 
 
@@ -356,7 +356,7 @@ export default function Page() {
           11 · FARO FULLSCREEN
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ position:"relative", width:"100%", height:"88vh", minHeight:500, overflow:"hidden" }}>
-        <Image src="/images/scuba.jpg" alt="" fill sizes="100vw" style={{ objectFit:"cover", objectPosition:"center top" }} />
+        <Image src="/images/palm-aerial.webp" alt="" fill sizes="100vw" style={{ objectFit:"cover", objectPosition:"center top" }} />
       </section>
 
 
