@@ -404,7 +404,7 @@ export default function Page() {
       {/* ─────────────────────────────────────────────────────────────────
           15 · RAZÓN 1 — grid plano 2×2 con altura fija para alinear
       ───────────────────────────────────────────────────────────────── */}
-      <section className="r-grid" style={{ background: CREAM, display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"1fr 1fr", height:560 }}>
+      <section className="r-grid" style={{ background: CREAM, display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"1fr 1fr", height:660 }}>
 
         {/* [1] top-left: imagen playa */}
         <div className="r-img" style={{ position:"relative" }}>
@@ -439,7 +439,7 @@ export default function Page() {
       {/* ─────────────────────────────────────────────────────────────────
           16 · RAZÓN 2 & 3
       ───────────────────────────────────────────────────────────────── */}
-      <section className="r-grid" style={{ background: CREAM, display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"1fr 1fr", height:560 }}>
+      <section className="r-grid" style={{ background: CREAM, display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"1fr 1fr", height:760 }}>
 
         {/* [1] top-left: imagen */}
         <div className="r-img" style={{ position:"relative" }}>
@@ -477,7 +477,7 @@ export default function Page() {
       {/* ─────────────────────────────────────────────────────────────────
           17 · RAZÓN 3 (VARIANTE) — Un fin de aventuras
       ───────────────────────────────────────────────────────────────── */}
-      <section className="r-grid" style={{ background: CREAM2, display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"1fr 1fr", height:560 }}>
+      <section className="r-grid" style={{ background: CREAM2, display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"1fr 1fr", height:760 }}>
 
         {/* [1] top-left: imagen café */}
         <div className="r-img" style={{ position:"relative" }}>
