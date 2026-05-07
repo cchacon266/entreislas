@@ -16,18 +16,43 @@ export default function Page() {
   return (
     <main>
 
+      {/* ── Mobile menu (CSS-only checkbox trick) ── */}
+      <input type="checkbox" id="mob-menu" className="r-menu-input" />
+
+      {/* Full-screen overlay */}
+      <div className="r-mob-menu">
+        {/* Close button */}
+        <label htmlFor="mob-menu" className="r-mob-close">×</label>
+
+        {/* Logo */}
+        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"0.3rem", marginBottom:"0.5rem" }}>
+          <span style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:500, fontSize:"1.05rem", letterSpacing:"0.28em", color:"rgba(255,255,255,0.9)", textTransform:"uppercase" }}>ENTRE ISLAS</span>
+          <span style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:300, fontSize:"0.48rem", letterSpacing:"0.32em", color:"rgba(255,255,255,0.45)", textTransform:"uppercase" }}>Downtown Cozumel</span>
+        </div>
+        <div style={{ width:36, height:1, background:"rgba(255,255,255,0.18)", marginBottom:"0.5rem" }} />
+
+        {/* Links */}
+        {["Conoce Cozumel","Concierge","Amenidades","Ubicación","Trayectoria","Blog"].map(l=>(
+          <a key={l} href="#" className="r-mob-link">{l}</a>
+        ))}
+
+        {/* CTA */}
+        <div style={{ marginTop:"1rem" }}>
+          <a href="#" className="btn btn-white" style={{ fontSize:"0.6rem", letterSpacing:"0.18em" }}>Recibir información</a>
+        </div>
+      </div>
+
       {/* ─────────────────────────────────────────────────────────────────
           1 · HERO — full-bleed aerial, dark overlay, white text
       ───────────────────────────────────────────────────────────────── */}
-      <section className="relative w-full" style={{ height: "100vh", minHeight: 600 }}>
-        <Image src="/images/hero-cozumel-aerial.jpg" alt="Cozumel" fill style={{ objectFit:"cover", objectPosition:"center" }} priority />
-        <div className="absolute inset-0" style={{ background:"linear-gradient(to bottom,rgba(20,14,6,0.55) 0%,rgba(20,14,6,0.18) 45%,rgba(20,14,6,0.52) 100%)" }} />
+      <section style={{ position:"relative", width:"100%", height:"100vh", minHeight:600, overflow:"hidden" }}>
+        <Image src="/images/hero-cozumel-aerial.jpg" alt="Cozumel" fill sizes="100vw" style={{ objectFit:"cover", objectPosition:"center" }} priority />
+        <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom,rgba(20,14,6,0.55) 0%,rgba(20,14,6,0.18) 45%,rgba(20,14,6,0.52) 100%)" }} />
 
         {/* Nav */}
-        <nav className="absolute top-0 left-0 right-0 z-20 px-8 lg:px-10"
-          style={{ display:"grid", gridTemplateColumns:"1fr auto 1fr", alignItems:"flex-end", paddingTop:"1.6rem", paddingBottom:"1rem" }}>
+        <nav className="r-nav" style={{ position:"absolute", top:0, left:0, right:0, zIndex:20, display:"grid", gridTemplateColumns:"1fr auto 1fr", alignItems:"flex-end", paddingTop:"1.6rem", paddingBottom:"1rem", paddingLeft:"2rem", paddingRight:"2rem" }}>
 
-          {/* Logo — left, aligned to baseline */}
+          {/* Logo */}
           <div style={{ display:"flex", flexDirection:"column", lineHeight:1.15, paddingBottom:"0.15rem" }}>
             <span style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:500, fontSize:"1.15rem", letterSpacing:"0.24em", textTransform:"uppercase", color:"#fff" }}>
               ENTRE ISLAS
@@ -37,16 +62,16 @@ export default function Page() {
             </span>
           </div>
 
-          {/* Links — centered, bigger */}
+          {/* Links — centered, hidden on mobile */}
           <div className="hidden lg:flex items-end gap-9" style={{ paddingBottom:"0.15rem" }}>
             {["Conoce Cozumel","Concierge","Amenidades","Ubicación","Trayectoria","Blog"].map(l=>(
               <a key={l} href="#" style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.82rem", letterSpacing:"0.06em", color:"#fff", whiteSpace:"nowrap" }}>{l}</a>
             ))}
           </div>
 
-          {/* CTA — right, sits lower */}
-          <div style={{ display:"flex", justifyContent:"flex-end", alignItems:"flex-end", paddingRight:"1.5rem" }}>
-            <a href="#" style={{
+          {/* CTA (desktop) + Hamburger (mobile) */}
+          <div style={{ display:"flex", justifyContent:"flex-end", alignItems:"center", gap:"1rem" }}>
+            <a href="#" className="r-nav-cta" style={{
               fontFamily:"'Montserrat',sans-serif",
               fontWeight:400,
               fontSize:"0.65rem",
@@ -56,22 +81,18 @@ export default function Page() {
               border:"1px solid rgba(255,255,255,0.75)",
               padding:"0.6rem 1.5rem",
               background:"transparent",
-              marginBottom:"0.15rem",
+              whiteSpace:"nowrap",
             }}>
               Recibir información
             </a>
+            <label htmlFor="mob-menu" className="r-hamburger">
+              <span /><span /><span />
+            </label>
           </div>
         </nav>
 
         {/* Hero copy — centered */}
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6">
-          {/* Small icon */}
-          <svg width="28" height="36" viewBox="0 0 28 36" fill="none" style={{ marginBottom:"1.4rem", opacity:0.85 }}>
-            <rect x="12" y="0" width="4" height="18" fill="white"/>
-            <rect x="6" y="18" width="16" height="3" fill="white"/>
-            <rect x="8" y="21" width="12" height="12" fill="white"/>
-            <rect x="10" y="33" width="8" height="3" fill="white"/>
-          </svg>
+        <div style={{ position:"absolute", inset:0, zIndex:10, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign:"center", padding:"0 1.5rem" }}>
           <h1 className="h-xl" style={{ color:"#fff", maxWidth:780 }}>
             Tu <em>hogar vacacional,</em> es una isla que
             <br />se siente <em>como el paraíso.</em>
@@ -87,7 +108,7 @@ export default function Page() {
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ background: CREAM, padding:"6rem 2rem" }}>
         <div style={{ maxWidth:780, margin:"0 auto", textAlign:"center" }}>
-          <h2 className="h-lg" style={{ marginBottom:"2.5rem" }}>Tu lugar en Cozumel, todos los años.</h2>
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:400, fontSize:"clamp(1.8rem,3.5vw,2.7rem)", lineHeight:1.25, color:DARK, marginBottom:"2.5rem", letterSpacing:"0.01em" }}>Tu lugar en Cozumel, todos los años.</h2>
           <p className="body" style={{ marginBottom:"1rem" }}>
             En Cozumel el tiempo se detiene. El mero hecho de llegar representa un ritual único.
           </p>
@@ -100,21 +121,21 @@ export default function Page() {
           <p className="body" style={{ marginBottom:"0.5rem" }}>Eso es Cozumel. Y tener un segundo hogar aquí, podría cambiar tu vida y la de los tuyos.</p>
           <p className="body" style={{ marginBottom:"4rem" }}>Esa es nuestra razón de existir.</p>
 
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3rem", textAlign:"left", marginBottom:"4rem" }}>
+          <div className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3rem", textAlign:"center", marginBottom:"4rem" }}>
             {[
               { title:"Nuestra Misión", body:"Ayudar a las personas a vivir los paraísos que ofrecen las islas del mundo, desde la comodidad de un segundo hogar." },
               { title:"Nuestra Visión", body:"Que adquirir una segunda propiedad se vuelva una forma natural de disfrutar la vida, para todos.\nTransformar la idea de propiedad en una experiencia recurrente." },
             ].map(({ title, body })=>(
               <div key={title}>
-                <p style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:400, fontSize:"1rem", color:TEAL, marginBottom:"0.8rem" }}>{title}</p>
-                <p className="body" style={{ whiteSpace:"pre-line" }}>{body}</p>
+                <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"1.3rem", color:TEAL, marginBottom:"1rem", letterSpacing:"0.01em" }}>{title}</p>
+                <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:300, fontSize:"0.76rem", lineHeight:1.9, color:BODY, whiteSpace:"pre-line" }}>{body}</p>
               </div>
             ))}
           </div>
 
-          <div style={{ borderTop:`1px solid rgba(44,37,26,0.12)`, paddingTop:"1.8rem", display:"flex", justifyContent:"center", gap:"3rem", flexWrap:"wrap" }}>
+          <div style={{ borderTop:`1px solid rgba(44,37,26,0.15)`, paddingTop:"2rem", display:"flex", justifyContent:"center", gap:"3.5rem", flexWrap:"wrap" }}>
             {["EXPERIENCIAS","DESTINOS","CONOCE ENTRE ISLAS","SOY SOCIO"].map(l=>(
-              <a key={l} href="#" className="label" style={{ color:BODY, opacity:0.7 }}>{l}</a>
+              <a key={l} href="#" style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.72rem", letterSpacing:"0.22em", textTransform:"uppercase", color:DARK, opacity:0.75 }}>{l}</a>
             ))}
           </div>
         </div>
@@ -124,46 +145,46 @@ export default function Page() {
       {/* ─────────────────────────────────────────────────────────────────
           3 · FORMULARIO VISUAL
       ───────────────────────────────────────────────────────────────── */}
-      <section style={{ display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:640 }}>
+      <section className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:640 }}>
         {/* Left — cream form */}
-        <div style={{ background: CREAM2, padding:"5rem 4rem 5rem 5rem", display:"flex", flexDirection:"column", justifyContent:"center" }}>
-          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.6rem,3vw,2.4rem)", lineHeight:1.25, color:DARK, marginBottom:"0.6rem" }}>
+        <div className="r-px" style={{ background: CREAM2, padding:"4rem 4rem 4rem 5rem", display:"flex", flexDirection:"column", justifyContent:"center" }}>
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.5rem,2.8vw,2.2rem)", lineHeight:1.35, color:DARK }}>
             Vacaciones aseguradas, cada año,<br />
             en familia, en tu isla. Descubre cómo<br />
             puedes dejar un legado patrimonial,<br />
             mientras alcanzas plenitud en tu vida.
           </h2>
-          <div style={{ width:28, height:1, background:TEAL, margin:"1.6rem 0" }} />
+          <div style={{ width:28, height:1, background:TEAL, margin:"1.4rem 0" }} />
 
-          {/* Field group */}
-          <p className="label" style={{ color:TEAL, marginBottom:"1.4rem" }}>Info</p>
+          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.7rem", color:DARK, marginBottom:"0.6rem" }}>Info</p>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 2rem" }}>
             <FF label="tu nombre / apellido" />
             <FF label="número" />
           </div>
-          <p className="label" style={{ color:TEAL, margin:"1.2rem 0 0.6rem" }}>Email</p>
+
+          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.7rem", color:DARK, margin:"1rem 0 0.6rem" }}>Email</p>
           <FF label="tu dirección de correo" />
-          <FF label="Charlemos, ¿por qué te interesa saber sobre este proyecto?" mt />
-          <div style={{ display:"flex", gap:"2rem", margin:"1rem 0" }}>
-            {["2 habitaciones / Penthouse / Spa","Otro"].map(o=>(
-              <span key={o} className="body" style={{ fontSize:"0.72rem" }}>{o}</span>
-            ))}
-          </div>
+
+          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.7rem", color:DARK, margin:"1rem 0 0.6rem" }}>Charlemos, ¿por qué te interesa saber sobre este proyecto?</p>
+          <FF label="2 habitaciones / Penthouse / Spa" />
+
+          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.7rem", color:DARK, margin:"1rem 0 0.6rem" }}>Otro</p>
           <FF label="tu mensaje" tall />
-          <div style={{ marginTop:"1.8rem" }}>
-            <button className="btn btn-dark">Enviar</button>
+
+          <div style={{ marginTop:"1.8rem", display:"flex", justifyContent:"center" }}>
+            <button className="btn btn-dark" style={{ minWidth:140 }}>Enviar</button>
           </div>
         </div>
 
         {/* Right — 2 images stacked */}
-        <div style={{ display:"grid", gridTemplateRows:"1fr 1fr" }}>
-          <div style={{ position:"relative" }}>
-            <Image src="/images/beach-chairs.jpg" alt="" fill style={{ objectFit:"cover" }} />
+        <div className="r-img-tall" style={{ display:"grid", gridTemplateRows:"1fr 1fr" }}>
+          <div className="r-img" style={{ position:"relative" }}>
+            <Image src="/images/beach-chairs.jpg" alt="" fill style={{ objectFit:"cover", objectPosition:"center top" }} />
           </div>
-          <div style={{ position:"relative" }}>
-            <Image src="/images/ocean-detail.jpg" alt="" fill style={{ objectFit:"cover" }} />
+          <div className="r-img" style={{ position:"relative" }}>
+            <Image src="/images/ocean-detail.jpg" alt="" fill style={{ objectFit:"cover", objectPosition:"center" }} />
             <div style={{ position:"absolute", bottom:20, right:20 }}>
-              <a href="#" className="btn btn-white">Conocer el proyecto</a>
+              <a href="#" className="btn btn-white" style={{ fontSize:"0.58rem", padding:"0.5rem 1.2rem" }}>Conocer el proyecto</a>
             </div>
           </div>
         </div>
@@ -194,17 +215,8 @@ export default function Page() {
       {/* ─────────────────────────────────────────────────────────────────
           5 · FULLSCREEN ISLAND
       ───────────────────────────────────────────────────────────────── */}
-      <section style={{ position:"relative", width:"100%", height:"90vh", minHeight:520 }}>
-        <Image src="/images/palm-aerial.jpg" alt="" fill style={{ objectFit:"cover", objectPosition:"center" }} />
-        {/* Small faro icon centered */}
-        <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
-          <svg width="32" height="44" viewBox="0 0 32 44" fill="none">
-            <rect x="14" y="0" width="4" height="22" fill="white" opacity="0.9"/>
-            <rect x="7" y="22" width="18" height="3" fill="white" opacity="0.9"/>
-            <rect x="9" y="25" width="14" height="16" fill="white" opacity="0.9"/>
-            <rect x="11" y="41" width="10" height="3" fill="white" opacity="0.9"/>
-          </svg>
-        </div>
+      <section style={{ position:"relative", width:"100%", height:"90vh", minHeight:520, overflow:"hidden" }}>
+        <Image src="/images/palm-aerial.jpg" alt="" fill sizes="100vw" style={{ objectFit:"cover", objectPosition:"center" }} />
       </section>
 
 
@@ -220,15 +232,14 @@ export default function Page() {
             Y por casa, nos referimos a esto:
           </p>
         </div>
-        {/* Three images — interior | hotel (2x wide) | lighthouse */}
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 2fr 1fr", height:420 }}>
-          <div style={{ position:"relative" }}>
+        <div className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 2fr 1fr", height:420 }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/interior-living.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
-          <div style={{ position:"relative" }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/hotel-facade.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
-          <div style={{ position:"relative" }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/lighthouse.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
         </div>
@@ -239,13 +250,11 @@ export default function Page() {
           7 · HOTEL BOUTIQUE
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ background: CREAM }}>
-        {/* Same 3-image collage at top — continuation of scroll */}
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 2fr 1fr", height:320 }}>
-          <div style={{ position:"relative" }}>
+        <div className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 2fr 1fr", height:320 }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/interior-living.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
-          <div style={{ position:"relative" }}>
-            {/* FOTO IMPRESIONANTE placeholder */}
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/hotel-facade.jpg" alt="" fill style={{ objectFit:"cover" }} />
             <div style={{ position:"absolute", inset:0, background:"rgba(44,37,26,0.35)", display:"flex", alignItems:"center", justifyContent:"center" }}>
               <div style={{ textAlign:"center" }}>
@@ -254,7 +263,7 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <div style={{ position:"relative" }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/lighthouse.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
         </div>
@@ -308,7 +317,6 @@ export default function Page() {
           </h2>
           <p className="label" style={{ color:BODY, marginBottom:"3rem" }}>LOBBY / SPA / GIMNASIO / ETC / INFINITY POOL / MIRADOR</p>
 
-          {/* 6 circles */}
           <div style={{ display:"flex", justifyContent:"center", gap:"2.5rem", flexWrap:"wrap" }}>
             {["LOBBY","SPA","GIMNASIO","ETC","INFINITY POOL","MIRADOR"].map(n=>(
               <div key={n} style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"0.7rem" }}>
@@ -325,15 +333,14 @@ export default function Page() {
           10 · GALERÍA EXPERIENCIAL
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ background: CREAM }}>
-        {/* 3 images full width */}
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 2fr 1fr", height:380 }}>
-          <div style={{ position:"relative" }}>
+        <div className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 2fr 1fr", height:380 }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/diving.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
-          <div style={{ position:"relative" }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/coffee-balcony.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
-          <div style={{ position:"relative" }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/cozumel-street.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
         </div>
@@ -348,8 +355,8 @@ export default function Page() {
       {/* ─────────────────────────────────────────────────────────────────
           11 · FARO FULLSCREEN
       ───────────────────────────────────────────────────────────────── */}
-      <section style={{ position:"relative", width:"100%", height:"88vh", minHeight:500 }}>
-        <Image src="/images/scuba.jpg" alt="" fill style={{ objectFit:"cover", objectPosition:"center top" }} />
+      <section style={{ position:"relative", width:"100%", height:"88vh", minHeight:500, overflow:"hidden" }}>
+        <Image src="/images/scuba.jpg" alt="" fill sizes="100vw" style={{ objectFit:"cover", objectPosition:"center top" }} />
       </section>
 
 
@@ -377,14 +384,12 @@ export default function Page() {
       {/* ─────────────────────────────────────────────────────────────────
           13 · MAPA — circle map left, text right
       ───────────────────────────────────────────────────────────────── */}
-      <section style={{ background: CREAM2, display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:400 }}>
-        {/* Map — circular crop */}
+      <section className="r-grid" style={{ background: CREAM2, display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:400 }}>
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"4rem" }}>
           <div style={{ position:"relative", width:280, height:280, borderRadius:"50%", overflow:"hidden" }}>
             <Image src="/images/yucatan-map.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
         </div>
-        {/* Text */}
         <div style={{ display:"flex", flexDirection:"column", justifyContent:"center", padding:"4rem 4rem 4rem 2rem" }}>
           <h2 className="h-lg" style={{ marginBottom:"0.5rem" }}>Conoce nuestra trayectoria.</h2>
           <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"1.3rem", color:TEAL, marginBottom:"2rem" }}>
@@ -399,11 +404,11 @@ export default function Page() {
           14 · 4 RAZONES — 2 images top, italic text bottom
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ background: CREAM }}>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", height:380 }}>
-          <div style={{ position:"relative" }}>
+        <div className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", height:380 }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/beach-family.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
-          <div style={{ position:"relative" }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/bed-sand.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
         </div>
@@ -416,112 +421,118 @@ export default function Page() {
 
 
       {/* ─────────────────────────────────────────────────────────────────
-          15 · RAZÓN 1 — left full image | right: top image + bottom text
+          15 · RAZÓN 1 — grid plano 2×2 con altura fija para alinear
       ───────────────────────────────────────────────────────────────── */}
-      <section style={{ background: CREAM, display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:560 }}>
-        {/* Left — tall image */}
-        <div style={{ position:"relative", minHeight:560 }}>
+      <section className="r-grid" style={{ background: CREAM, display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"1fr 1fr", height:560 }}>
+
+        {/* [1] top-left: imagen playa */}
+        <div className="r-img" style={{ position:"relative" }}>
           <Image src="/images/razón1-left.jpg" alt="" fill style={{ objectFit:"cover" }} />
         </div>
-        {/* Right — top image + bottom text */}
-        <div style={{ display:"grid", gridTemplateRows:"1fr 1fr" }}>
-          <div style={{ position:"relative" }}>
-            <Image src="/images/razón1-right.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          </div>
-          <div style={{ padding:"2.5rem 3rem", background: CREAM, display:"flex", flexDirection:"column", justifyContent:"center" }}>
-            <p className="body" style={{ fontSize:"0.73rem", marginBottom:"0.5rem" }}>Si fueras dueño de un departamento completo en una isla,</p>
-            <p className="body" style={{ fontSize:"0.73rem", marginBottom:"0.5rem" }}>cuantas veces al año viajarías? cuantos días realmente lo</p>
-            <p className="body" style={{ fontSize:"0.73rem", marginBottom:"0.5rem" }}>usarías?</p>
-            <p className="body" style={{ fontSize:"0.73rem", marginBottom:"1rem" }}>7 días? 10? 14 días? 2 semanas es el tiempo adecuado.</p>
-            <p className="body" style={{ fontSize:"0.73rem" }}>Tiempo suficiente para recargar energía y para volver a la vida sin perder el control de nada (incluyendo tus finanzas).</p>
-          </div>
-        </div>
-      </section>
 
-      {/* Razón 1 — text panel below */}
-      <section style={{ background: CREAM, padding:"3.5rem 2rem 4rem" }}>
-        <div style={{ maxWidth:560, marginLeft:"2rem" }}>
-          <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.5rem,2.8vw,2.1rem)", color:DARK, marginBottom:"0.5rem" }}>
+        {/* [2] top-right: texto "Si fueras dueño…" */}
+        <div style={{ padding:"2.5rem 3rem", background: CREAM, display:"flex", flexDirection:"column", justifyContent:"center" }}>
+          <p className="body" style={{ fontSize:"0.73rem", marginBottom:"0.6rem" }}>Si fueras dueño de un departamento completo en una isla, ¿cuántas veces al año viajarías? ¿cuántos días realmente lo usarías?</p>
+          <p className="body" style={{ fontSize:"0.73rem", marginBottom:"0.6rem" }}>7 días? 10? 14 días? 2 semanas es el tiempo adecuado.</p>
+          <p className="body" style={{ fontSize:"0.73rem" }}>Tiempo suficiente para recargar energía y para volver a la vida sin perder el control de nada (incluyendo tus finanzas).</p>
+        </div>
+
+        {/* [3] bottom-left: heading "Propiedad fraccional" */}
+        <div style={{ padding:"2.5rem 3rem", background: CREAM, display:"flex", flexDirection:"column", justifyContent:"center" }}>
+          <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.4rem,2.6vw,2rem)", color:DARK, lineHeight:1.3, marginBottom:"0.5rem" }}>
             Propiedad fraccional:<br />Pagas solo el tiempo que usas
           </h3>
           <div style={{ width:24, height:1, background:TEAL, margin:"1rem 0" }} />
-          <p className="body" style={{ marginBottom:"0.6rem" }}>Vacacionar es algo que muy pocos tienen el lujo de hacer.</p>
+          <p className="body" style={{ marginBottom:"0.5rem" }}>Vacacionar es algo que muy pocos tienen el lujo de hacer.</p>
           <p className="body">Ahora… vacacionar EN UNA ISLA PARADISIACA es algo que ni el 0.001% del mundo puede hacer.</p>
         </div>
+
+        {/* [4] bottom-right: imagen café/balcón */}
+        <div className="r-img" style={{ position:"relative" }}>
+          <Image src="/images/razón1-right.jpg" alt="" fill style={{ objectFit:"cover" }} />
+        </div>
+
       </section>
 
 
       {/* ─────────────────────────────────────────────────────────────────
           16 · RAZÓN 2 & 3
       ───────────────────────────────────────────────────────────────── */}
-      <section style={{ background: CREAM, display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:520 }}>
-        {/* Left: top image + bottom text */}
-        <div style={{ display:"grid", gridTemplateRows:"1fr auto" }}>
-          <div style={{ position:"relative", minHeight:280 }}>
-            <Image src="/images/razón2-left.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          </div>
-          <div style={{ padding:"2.5rem 3rem", background: CREAM2 }}>
-            <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.3rem,2.2vw,1.7rem)", color:DARK, marginBottom:"1rem" }}>
-              Menor inversión, por más beneficios.<br />Una compra inteligente,
-            </h3>
-            <p className="body" style={{ marginBottom:"0.4rem" }}>Menos que una propiedad completa</p>
-            <p className="body" style={{ marginBottom:"0.4rem" }}>gastos de mantenimiento</p>
-            <p className="body">etc etc etc</p>
-          </div>
+      <section className="r-grid" style={{ background: CREAM, display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"1fr 1fr", height:560 }}>
+
+        {/* [1] top-left: imagen */}
+        <div className="r-img" style={{ position:"relative" }}>
+          <Image src="/images/razón2-left.jpg" alt="" fill style={{ objectFit:"cover" }} />
         </div>
-        {/* Right: top text + bottom image */}
-        <div style={{ display:"grid", gridTemplateRows:"auto 1fr" }}>
-          <div style={{ padding:"2.5rem 3rem", background: CREAM }}>
-            <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:400, fontSize:"clamp(1.3rem,2.2vw,1.7rem)", color:TEAL, marginBottom:"1rem" }}>
-              Ubicación de ensueño.
-            </h3>
-            <p className="body" style={{ marginBottom:"0.7rem" }}>Lo único realmente primordial en el desarrollo inmobiliario es la ubicación. y que mas valiosos que un lugar como una isla que es escasa.</p>
-            <p className="body" style={{ marginBottom:"0.7rem" }}>donde la demanda siempre superará a la oferta simple y sencillamente por la geografía. Aún más cuando el 65% de la isla es. Estarás POR SIEMPRE a solo 5 minutos caminando de la ÚNICA LLEGADA A LA ISLA POR FERRY…</p>
-            <a href="#" className="btn btn-teal" style={{ marginTop:"1rem" }}>Conocer el proyecto</a>
-          </div>
-          <div style={{ position:"relative", minHeight:200 }}>
-            <Image src="/images/razón2-right.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          </div>
+
+        {/* [2] top-right: texto "Ubicación de ensueño" */}
+        <div style={{ padding:"2.5rem 3rem", background: CREAM, display:"flex", flexDirection:"column", justifyContent:"center" }}>
+          <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:400, fontSize:"clamp(1.3rem,2.2vw,1.7rem)", color:TEAL, marginBottom:"1rem" }}>
+            Ubicación de ensueño.
+          </h3>
+          <p className="body" style={{ marginBottom:"0.7rem" }}>Lo único realmente primordial en el desarrollo inmobiliario es la ubicación. y que mas valiosos que un lugar como una isla que es escasa.</p>
+          <p className="body" style={{ marginBottom:"0.7rem" }}>donde la demanda siempre superará a la oferta simple y sencillamente por la geografía. Aún más cuando el 65% de la isla es. Estarás POR SIEMPRE a solo 5 minutos caminando de la ÚNICA LLEGADA A LA ISLA POR FERRY…</p>
+          <a href="#" className="btn btn-teal" style={{ marginTop:"1rem", alignSelf:"flex-start" }}>Conocer el proyecto</a>
         </div>
+
+        {/* [3] bottom-left: heading "Menor inversión" */}
+        <div style={{ padding:"2.5rem 3rem", background: CREAM2, display:"flex", flexDirection:"column", justifyContent:"center" }}>
+          <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.3rem,2.2vw,1.7rem)", color:DARK, marginBottom:"1rem" }}>
+            Menor inversión, por más beneficios.<br />Una compra inteligente,
+          </h3>
+          <p className="body" style={{ marginBottom:"0.4rem" }}>Menos que una propiedad completa</p>
+          <p className="body" style={{ marginBottom:"0.4rem" }}>gastos de mantenimiento</p>
+          <p className="body">etc etc etc</p>
+        </div>
+
+        {/* [4] bottom-right: imagen */}
+        <div className="r-img" style={{ position:"relative" }}>
+          <Image src="/images/razón2-right.jpg" alt="" fill style={{ objectFit:"cover" }} />
+        </div>
+
       </section>
 
 
       {/* ─────────────────────────────────────────────────────────────────
           17 · RAZÓN 3 (VARIANTE) — Un fin de aventuras
       ───────────────────────────────────────────────────────────────── */}
-      <section style={{ background: CREAM2, display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:520 }}>
-        <div style={{ display:"grid", gridTemplateRows:"1fr auto" }}>
-          <div style={{ position:"relative", minHeight:280 }}>
-            <Image src="/images/razón2-left.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          </div>
-          <div style={{ padding:"2.5rem 3rem", background: CREAM2 }}>
-            <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.3rem,2.2vw,1.7rem)", color:DARK, marginBottom:"1rem" }}>
-              Un fin de aventuras.
-            </h3>
-            <p className="body" style={{ marginBottom:"0.4rem" }}>Menos que una propiedad completa</p>
-            <p className="body" style={{ marginBottom:"0.4rem" }}>gastos de mantenimiento</p>
-            <p className="body">etc etc etc</p>
-          </div>
+      <section className="r-grid" style={{ background: CREAM2, display:"grid", gridTemplateColumns:"1fr 1fr", gridTemplateRows:"1fr 1fr", height:560 }}>
+
+        {/* [1] top-left: imagen café */}
+        <div className="r-img" style={{ position:"relative" }}>
+          <Image src="/images/razón2-left.jpg" alt="" fill style={{ objectFit:"cover" }} />
         </div>
-        <div style={{ display:"grid", gridTemplateRows:"auto 1fr" }}>
-          <div style={{ padding:"2.5rem 3rem", background: CREAM2 }}>
-            <p className="body" style={{ marginBottom:"0.7rem" }}>Lo único realmente primordial en el desarrollo inmobiliario es la ubicación. y que mas valiosos que un lugar como una isla que es escasa.</p>
-            <p className="body" style={{ marginBottom:"0.7rem" }}>donde la demanda siempre superará a la oferta simple y sencillamente por la geografía. Aún más cuando el 65% de la isla es. Estarás POR SIEMPRE a solo 5 minutos caminando de la ÚNICA LLEGADA A LA ISLA POR FERRY…</p>
-            <a href="#" className="btn btn-teal" style={{ marginTop:"1rem" }}>Conocer el proyecto</a>
-          </div>
-          <div style={{ position:"relative", minHeight:200 }}>
-            <Image src="/images/razón1-left.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          </div>
+
+        {/* [2] top-right: texto ubicación */}
+        <div style={{ padding:"2.5rem 3rem", background: CREAM2, display:"flex", flexDirection:"column", justifyContent:"center" }}>
+          <p className="body" style={{ marginBottom:"0.7rem" }}>Lo único realmente primordial en el desarrollo inmobiliario es la ubicación. y que mas valiosos que un lugar como una isla que es escasa.</p>
+          <p className="body" style={{ marginBottom:"0.7rem" }}>donde la demanda siempre superará a la oferta simple y sencillamente por la geografía. Aún más cuando el 65% de la isla es. Estarás POR SIEMPRE a solo 5 minutos caminando de la ÚNICA LLEGADA A LA ISLA POR FERRY…</p>
+          <a href="#" className="btn btn-teal" style={{ marginTop:"1rem", alignSelf:"flex-start" }}>Conocer el proyecto</a>
         </div>
+
+        {/* [3] bottom-left: heading "Un fin de aventuras" */}
+        <div style={{ padding:"2.5rem 3rem", background: CREAM2, display:"flex", flexDirection:"column", justifyContent:"center" }}>
+          <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.3rem,2.2vw,1.7rem)", color:DARK, marginBottom:"1rem" }}>
+            Un fin de aventuras.
+          </h3>
+          <p className="body" style={{ marginBottom:"0.4rem" }}>Menos que una propiedad completa</p>
+          <p className="body" style={{ marginBottom:"0.4rem" }}>gastos de mantenimiento</p>
+          <p className="body">etc etc etc</p>
+        </div>
+
+        {/* [4] bottom-right: imagen playa */}
+        <div className="r-img" style={{ position:"relative" }}>
+          <Image src="/images/razón1-left.jpg" alt="" fill style={{ objectFit:"cover" }} />
+        </div>
+
       </section>
 
 
       {/* ─────────────────────────────────────────────────────────────────
           18 · RAZÓN 4 — Cuzamil / Historia
       ───────────────────────────────────────────────────────────────── */}
-      <section style={{ display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:520 }}>
-        {/* Left — cream text */}
-        <div style={{ background: CREAM, padding:"5rem 4rem", display:"flex", flexDirection:"column", justifyContent:"center" }}>
+      <section className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:700 }}>
+        <div className="r-px" style={{ background: CREAM, padding:"7rem 5rem", display:"flex", flexDirection:"column", justifyContent:"center" }}>
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:400, fontSize:"clamp(1.6rem,3vw,2.4rem)", color:TEAL, lineHeight:1.2, marginBottom:"0.5rem" }}>
             Cuzamil. Tierra de golondrinas.
           </h2>
@@ -530,11 +541,10 @@ export default function Page() {
           </p>
           <p className="body" style={{ marginBottom:"0.6rem" }}>El atractivo internacional de esta isla no solo es debido a sus escenarios naturales, sino también por su cultura y su historia.</p>
           <p className="body" style={{ marginBottom:"0.6rem" }}>Una isla moldeada por la historia global de los últimos 100 años.</p>
-          <p className="body" style={{ marginBottom:"2rem" }}>Llegar a Cozumel es viajar en el tiempo.</p>
-          <a href="#" className="btn btn-teal" style={{ alignSelf:"flex-start" }}>Conocer el proyecto</a>
+          <p className="body" style={{ marginBottom:"2.5rem" }}>Llegar a Cozumel es viajar en el tiempo.</p>
+          <a href="#" className="btn btn-teal" style={{ alignSelf:"flex-start", background:TEAL, color:CREAM, padding:"0.85rem 2.5rem", fontSize:"0.62rem", letterSpacing:"0.22em" }}>Conocer el proyecto</a>
         </div>
-        {/* Right — full image */}
-        <div style={{ position:"relative", minHeight:420 }}>
+        <div className="r-img-tall" style={{ position:"relative", minHeight:420 }}>
           <Image src="/images/historia-cozumel.jpg" alt="" fill style={{ objectFit:"cover" }} />
           <div style={{ position:"absolute", bottom:20, right:20 }}>
             <a href="#" className="btn btn-white">Conocer el proyecto</a>
@@ -547,11 +557,11 @@ export default function Page() {
           19 · ESTILO DE VIDA — 2 images top, text bottom
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ background: CREAM }}>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", height:340 }}>
-          <div style={{ position:"relative" }}>
+        <div className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", height:340 }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/lifestyle-left.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
-          <div style={{ position:"relative" }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/lifestyle-right.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
         </div>
@@ -580,11 +590,11 @@ export default function Page() {
           <p className="body" style={{ marginBottom:"0.6rem" }}>personalizado y una obsesión por la calidad. Porque cada desarro-</p>
           <p className="body">llo es también una relación de confianza a largo plazo.</p>
         </div>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", height:340 }}>
-          <div style={{ position:"relative" }}>
+        <div className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", height:340 }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/paraiso-left.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
-          <div style={{ position:"relative" }}>
+          <div className="r-img" style={{ position:"relative" }}>
             <Image src="/images/paraiso-right.jpg" alt="" fill style={{ objectFit:"cover" }} />
           </div>
         </div>
@@ -592,14 +602,14 @@ export default function Page() {
 
 
       {/* ─────────────────────────────────────────────────────────────────
-          21 · CIERRE EMOCIONAL — nearly empty cream, offset italic text
+          21 · CIERRE EMOCIONAL
       ───────────────────────────────────────────────────────────────── */}
-      <section style={{ background: CREAM, padding:"8rem 5rem 8rem" }}>
-        <div>
-          <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(2rem,4.5vw,3.5rem)", color:TEAL, lineHeight:1.3 }}>
+      <section className="r-px" style={{ background: CREAM, padding:"8rem 2rem" }}>
+        <div style={{ maxWidth:820, margin:"0 auto" }}>
+          <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(2rem,4.5vw,3.5rem)", color:TEAL, lineHeight:1.05, marginBottom:"0.15em" }}>
             Experiencia de hotel,
           </p>
-          <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(2rem,4.5vw,3.5rem)", color:TEAL, lineHeight:1.3, textAlign:"right" }}>
+          <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(2rem,4.5vw,3.5rem)", color:TEAL, lineHeight:1.05, textAlign:"right" }}>
             en tu propia casa...
           </p>
         </div>
@@ -609,8 +619,8 @@ export default function Page() {
       {/* ─────────────────────────────────────────────────────────────────
           22 · INVERSIÓN / COZUMEL — two columns with vertical divider
       ───────────────────────────────────────────────────────────────── */}
-      <section style={{ background: CREAM2, display:"grid", gridTemplateColumns:"1fr 1px 1fr" }}>
-        <div style={{ padding:"5rem 5rem 5rem 4rem" }}>
+      <section className="r-grid" style={{ background: CREAM2, display:"grid", gridTemplateColumns:"1fr 1px 1fr" }}>
+        <div className="r-px" style={{ padding:"5rem 5rem 5rem 4rem" }}>
           <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.6rem,2.8vw,2.2rem)", color:TEAL, marginBottom:"1.5rem" }}>
             Cozumel cada año.
           </h3>
@@ -619,8 +629,8 @@ export default function Page() {
           </p>
         </div>
         {/* Vertical divider */}
-        <div style={{ background:"rgba(44,37,26,0.15)" }} />
-        <div style={{ padding:"5rem 4rem 5rem 5rem" }}>
+        <div className="r-divider" style={{ background:"rgba(44,37,26,0.15)" }} />
+        <div className="r-px" style={{ padding:"5rem 4rem 5rem 5rem" }}>
           <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:400, fontSize:"clamp(1.6rem,2.8vw,2.2rem)", color:TEAL, marginBottom:"1.5rem" }}>
             Inversión inteligente.
           </h3>
@@ -634,24 +644,15 @@ export default function Page() {
       {/* ─────────────────────────────────────────────────────────────────
           23 · FOOTER — warm gray, 3 columns
       ───────────────────────────────────────────────────────────────── */}
-      <footer style={{ background: FOOTER, display:"grid", gridTemplateColumns:"1fr 1px 1fr 1px 1fr", padding:"4rem 5rem" }}>
+      <footer className="r-footer" style={{ background: FOOTER, display:"grid", gridTemplateColumns:"1fr 1px 1fr 1px 1fr", padding:"4rem 5rem" }}>
         {/* Logo column */}
         <div style={{ display:"flex", flexDirection:"column", justifyContent:"center", gap:"0.8rem" }}>
-          {/* Lighthouse SVG icon */}
-          <svg width="44" height="56" viewBox="0 0 44 56" fill="none" style={{ opacity:0.85 }}>
-            <rect x="19" y="0" width="6" height="28" fill="white"/>
-            <rect x="10" y="28" width="24" height="4" fill="white"/>
-            <rect x="12" y="32" width="20" height="20" fill="white"/>
-            <rect x="6" y="26" width="4" height="6" fill="white"/>
-            <rect x="34" y="26" width="4" height="6" fill="white"/>
-            <rect x="14" y="52" width="16" height="4" fill="white"/>
-          </svg>
           <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:500, fontSize:"0.95rem", letterSpacing:"0.22em", color:"#fff", textTransform:"uppercase" }}>ENTRE ISLAS</p>
           <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:300, fontSize:"0.6rem", letterSpacing:"0.25em", color:"rgba(255,255,255,0.7)", textTransform:"uppercase" }}>Downtown Cozumel</p>
         </div>
 
         {/* Divider */}
-        <div style={{ background:"rgba(255,255,255,0.2)" }} />
+        <div className="r-divider" style={{ background:"rgba(255,255,255,0.2)" }} />
 
         {/* Contact column */}
         <div style={{ padding:"0 3rem", display:"flex", flexDirection:"column", gap:"1.5rem" }}>
@@ -670,7 +671,7 @@ export default function Page() {
         </div>
 
         {/* Divider */}
-        <div style={{ background:"rgba(255,255,255,0.2)" }} />
+        <div className="r-divider" style={{ background:"rgba(255,255,255,0.2)" }} />
 
         {/* Nav links */}
         <div style={{ padding:"0 0 0 3rem", display:"flex", flexDirection:"column", justifyContent:"center", gap:"1.1rem" }}>
