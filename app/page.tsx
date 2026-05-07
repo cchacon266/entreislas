@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Carousel from "./components/Carousel";
 
 /* ═══════════════════════════════════════════════════════════════════════════
    ENTRE ISLAS DOWNTOWN COZUMEL — Pixel-perfect visual landing
@@ -232,17 +233,15 @@ export default function Page() {
             Y por casa, nos referimos a esto:
           </p>
         </div>
-        <div className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 2fr 1fr", height:420 }}>
-          <div className="r-img" style={{ position:"relative" }}>
-            <Image src="/images/interior-living.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          </div>
-          <div className="r-img" style={{ position:"relative" }}>
-            <Image src="/images/hotel-facade.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          </div>
-          <div className="r-img" style={{ position:"relative" }}>
-            <Image src="/images/lighthouse.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          </div>
-        </div>
+        <Carousel
+          height={460}
+          images={[
+            "/images/carousel-1.webp",
+            "/images/carousel-2.webp",
+            "/images/carousel-3.webp",
+            "/images/carousel-4.webp",
+          ]}
+        />
       </section>
 
 
@@ -250,24 +249,6 @@ export default function Page() {
           7 · HOTEL BOUTIQUE
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ background: CREAM }}>
-        <div className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 2fr 1fr", height:320 }}>
-          <div className="r-img" style={{ position:"relative" }}>
-            <Image src="/images/interior-living.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          </div>
-          <div className="r-img" style={{ position:"relative" }}>
-            <Image src="/images/hotel-facade.jpg" alt="" fill style={{ objectFit:"cover" }} />
-            <div style={{ position:"absolute", inset:0, background:"rgba(44,37,26,0.35)", display:"flex", alignItems:"center", justifyContent:"center" }}>
-              <div style={{ textAlign:"center" }}>
-                <p style={{ fontFamily:"'Montserrat',sans-serif", fontSize:"0.55rem", letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(255,255,255,0.7)", marginBottom:"0.4rem" }}>FOTO IMPRESIONANTE</p>
-                <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"1.6rem", fontWeight:400, color:"rgba(255,255,255,0.55)", letterSpacing:"0.2em" }}>DE LA FACHADA</p>
-              </div>
-            </div>
-          </div>
-          <div className="r-img" style={{ position:"relative" }}>
-            <Image src="/images/lighthouse.jpg" alt="" fill style={{ objectFit:"cover" }} />
-          </div>
-        </div>
-
         <div style={{ padding:"4rem 2rem 5rem", maxWidth:680, margin:"0 auto", textAlign:"center" }}>
           <p className="body" style={{ marginBottom:"0.7rem" }}>Un hotel de categoría boutique, justo en el corazón de Cozumel.</p>
           <p className="body" style={{ marginBottom:"0.7rem" }}>Rodeado de vida, de arte y de colores. Con gimnasio, spa, infinity pool y un rooftop con vistas magníficas hacia el mar caribe.</p>
