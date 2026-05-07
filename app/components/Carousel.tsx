@@ -67,6 +67,7 @@ export default function Carousel({ images, height = 420 }: CarouselProps) {
             width: "133.33%",
             height,
             alignItems: "center",
+            gap: 6,
             transform: sliding ? "translateX(-50%)" : "translateX(-25%)",
             transition: sliding
               ? "transform 0.56s cubic-bezier(0.65,0,0.35,1)"
