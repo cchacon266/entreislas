@@ -108,8 +108,8 @@ export default function Page() {
           2 · MISIÓN / VISIÓN
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ background: CREAM, padding:"6rem 2rem" }}>
-        <div style={{ maxWidth:780, margin:"0 auto", textAlign:"center" }}>
-          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:400, fontSize:"clamp(1.8rem,3.5vw,2.7rem)", lineHeight:1.25, color:DARK, marginBottom:"2.5rem", letterSpacing:"0.01em" }}>Tu lugar en Cozumel, todos los años.</h2>
+        <div style={{ maxWidth:860, margin:"0 auto", textAlign:"center" }}>
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:400, fontSize:"clamp(2.2rem,4vw,3.2rem)", lineHeight:1.2, color:DARK, marginBottom:"2.5rem", letterSpacing:"0.01em" }}>Tu lugar en Cozumel, todos los años.</h2>
           <p className="body" style={{ marginBottom:"1rem" }}>
             En Cozumel el tiempo se detiene. El mero hecho de llegar representa un ritual único.
           </p>
@@ -128,8 +128,8 @@ export default function Page() {
               { title:"Nuestra Visión", body:"Que adquirir una segunda propiedad se vuelva una forma natural de disfrutar la vida, para todos.\nTransformar la idea de propiedad en una experiencia recurrente." },
             ].map(({ title, body })=>(
               <div key={title}>
-                <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"1.3rem", color:TEAL, marginBottom:"1rem", letterSpacing:"0.01em" }}>{title}</p>
-                <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:300, fontSize:"0.76rem", lineHeight:1.9, color:BODY, whiteSpace:"pre-line" }}>{body}</p>
+                <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"1.55rem", color:TEAL, marginBottom:"1rem", letterSpacing:"0.01em" }}>{title}</p>
+                <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:300, fontSize:"1rem", lineHeight:2, color:BODY, whiteSpace:"pre-line" }}>{body}</p>
               </div>
             ))}
           </div>
@@ -149,7 +149,7 @@ export default function Page() {
       <section className="r-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", minHeight:640 }}>
         {/* Left — cream form */}
         <div className="r-px" style={{ background: CREAM2, padding:"4rem 4rem 4rem 5rem", display:"flex", flexDirection:"column", justifyContent:"center" }}>
-          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.5rem,2.8vw,2.2rem)", lineHeight:1.35, color:DARK }}>
+          <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.8rem,3.2vw,2.6rem)", lineHeight:1.3, color:DARK }}>
             Vacaciones aseguradas, cada año,<br />
             en familia, en tu isla. Descubre cómo<br />
             puedes dejar un legado patrimonial,<br />
@@ -157,19 +157,19 @@ export default function Page() {
           </h2>
           <div style={{ width:28, height:1, background:TEAL, margin:"1.4rem 0" }} />
 
-          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.7rem", color:DARK, marginBottom:"0.6rem" }}>Info</p>
+          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.88rem", color:DARK, marginBottom:"0.6rem" }}>Info</p>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 2rem" }}>
             <FF label="tu nombre / apellido" />
             <FF label="número" />
           </div>
 
-          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.7rem", color:DARK, margin:"1rem 0 0.6rem" }}>Email</p>
+          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.88rem", color:DARK, margin:"1rem 0 0.6rem" }}>Email</p>
           <FF label="tu dirección de correo" />
 
-          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.7rem", color:DARK, margin:"1rem 0 0.6rem" }}>Charlemos, ¿por qué te interesa saber sobre este proyecto?</p>
+          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.88rem", color:DARK, margin:"1rem 0 0.6rem" }}>Charlemos, ¿por qué te interesa saber sobre este proyecto?</p>
           <FF label="2 habitaciones / Penthouse / Spa" />
 
-          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.7rem", color:DARK, margin:"1rem 0 0.6rem" }}>Otro</p>
+          <p style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:400, fontSize:"0.88rem", color:DARK, margin:"1rem 0 0.6rem" }}>Otro</p>
           <FF label="tu mensaje" tall />
 
           <div style={{ marginTop:"1.8rem", display:"flex", justifyContent:"center" }}>
@@ -197,7 +197,7 @@ export default function Page() {
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ background: CREAM, padding:"6rem 2rem" }}>
         <div style={{ maxWidth:700, margin:"0 auto", textAlign:"center" }}>
-          <p className="body" style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(1.3rem,2.5vw,1.9rem)", fontWeight:400, lineHeight:1.5, color:DARK, marginBottom:"2.5rem" }}>
+          <p className="body" style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(1.6rem,3vw,2.3rem)", fontWeight:400, lineHeight:1.5, color:DARK, marginBottom:"2.5rem" }}>
             No prometemos rendimientos. Ofrecemos algo mucho más valioso.<br />
             Sonrisas, memorias y sensaciones.<br />
             Todos los años, en tu segunda propiedad vacacional, para siempre...
@@ -226,7 +226,7 @@ export default function Page() {
       ───────────────────────────────────────────────────────────────── */}
       <section style={{ background: CREAM }}>
         <div style={{ padding:"5rem 2rem 3rem", textAlign:"center" }}>
-          <p style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:400, fontSize:"clamp(1.2rem,2.3vw,1.7rem)", lineHeight:1.7, color:DARK }}>
+          <p style={{ fontFamily:"'Cormorant Garamond',serif", fontWeight:400, fontSize:"clamp(1.5rem,2.8vw,2.1rem)", lineHeight:1.7, color:DARK }}>
             ENTRE ISLAS es esa luz que ves desde el oceano…<br />
             ese faro que representa un puerto seguro.<br />
             Esa sensación de que ya casi estás en casa.<br />
@@ -274,7 +274,7 @@ export default function Page() {
             <a href="#" className="btn btn-dark">Conocer más</a>
             <a href="#" className="btn btn-teal">AGENDAR UNA CITA CON FUNDADOR</a>
           </div>
-          <p className="body" style={{ fontSize:"0.73rem", marginTop:"1rem" }}>
+          <p className="body" style={{ marginTop:"1rem" }}>
             No sera una cita con un asesor cualquiera que te va a estar molestando cada 2 días…<br />
             sino con nuestro socio fundador.
           </p>
@@ -296,13 +296,13 @@ export default function Page() {
           <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontWeight:400, fontSize:"clamp(1.8rem,3.5vw,2.8rem)", color:TEAL, marginBottom:"0.8rem" }}>
             Amenidades.
           </h2>
-          <p className="label" style={{ color:BODY, marginBottom:"3rem" }}>LOBBY / SPA / GIMNASIO / ETC / INFINITY POOL / MIRADOR</p>
+          <p className="label" style={{ color:BODY, marginBottom:"3rem", fontSize:"0.72rem", letterSpacing:"0.18em" }}>LOBBY / SPA / GIMNASIO / ETC / INFINITY POOL / MIRADOR</p>
 
-          <div style={{ display:"flex", justifyContent:"center", gap:"2.5rem", flexWrap:"wrap" }}>
+          <div style={{ display:"flex", justifyContent:"center", gap:"3rem", flexWrap:"wrap" }}>
             {["LOBBY","SPA","GIMNASIO","ETC","INFINITY POOL","MIRADOR"].map(n=>(
-              <div key={n} style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"0.7rem" }}>
-                <div style={{ width:60, height:60, borderRadius:"50%", border:`1px solid rgba(30,80,96,0.35)` }} />
-                <span className="label" style={{ color:BODY, fontSize:"0.52rem" }}>{n}</span>
+              <div key={n} style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"0.9rem" }}>
+                <div style={{ width:72, height:72, borderRadius:"50%", border:`1px solid rgba(30,80,96,0.35)` }} />
+                <span className="label" style={{ color:BODY, fontSize:"0.65rem", letterSpacing:"0.18em" }}>{n}</span>
               </div>
             ))}
           </div>
@@ -413,9 +413,9 @@ export default function Page() {
 
         {/* [2] top-right: texto "Si fueras dueño…" */}
         <div style={{ padding:"2.5rem 3rem", background: CREAM, display:"flex", flexDirection:"column", justifyContent:"center" }}>
-          <p className="body" style={{ fontSize:"0.73rem", marginBottom:"0.6rem" }}>Si fueras dueño de un departamento completo en una isla, ¿cuántas veces al año viajarías? ¿cuántos días realmente lo usarías?</p>
-          <p className="body" style={{ fontSize:"0.73rem", marginBottom:"0.6rem" }}>7 días? 10? 14 días? 2 semanas es el tiempo adecuado.</p>
-          <p className="body" style={{ fontSize:"0.73rem" }}>Tiempo suficiente para recargar energía y para volver a la vida sin perder el control de nada (incluyendo tus finanzas).</p>
+          <p className="body" style={{ marginBottom:"0.6rem" }}>Si fueras dueño de un departamento completo en una isla, ¿cuántas veces al año viajarías? ¿cuántos días realmente lo usarías?</p>
+          <p className="body" style={{ marginBottom:"0.6rem" }}>7 días? 10? 14 días? 2 semanas es el tiempo adecuado.</p>
+          <p className="body" style={{ }}>Tiempo suficiente para recargar energía y para volver a la vida sin perder el control de nada (incluyendo tus finanzas).</p>
         </div>
 
         {/* [3] bottom-left: heading "Propiedad fraccional" */}
